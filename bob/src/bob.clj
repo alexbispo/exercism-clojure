@@ -6,17 +6,16 @@
 
 (defn is-yell?
    [word]
-   (if (is-only-number? word)
-     false
+   (if (not (is-only-number? word))
      (= word (.toUpperCase word))))
 
 (defn is-a-question?
    [word]
-   (and (not (is-yell? word)) (re-find #"\?$" word)))
+   (and (not (is-yell? word)) (.endsWith word "?")))
 
  (defn response-for
    [word]
-   (if (empty? (.trim word))
+   (if (.isEmpty (.trim word))
      "Fine. Be that way!"
      (if (is-a-question? word)
        "Sure."
