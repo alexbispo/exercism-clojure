@@ -4,18 +4,18 @@
   [word]
   (not (re-find #"[A-Za-z]" word)))
 
-(defn is-a-shout
+(defn shout
    [word]
    (if (and (not (is-only-number? word))
             (= word (.toUpperCase word)))
      "Whoa, chill out!"))
 
-(defn is-a-question
+(defn question
    [word]
   (if (.endsWith word "?")
     "Sure."))
 
- (defn is-nothing
+ (defn nothing
    [word]
    (if (.isEmpty (.trim word))
      "Fine. Be that way!"))
@@ -23,7 +23,7 @@
 (defn response-for
  [word]
  (or
-   (is-nothing word)
-   (is-a-shout word)
-   (is-a-question word)
+   (nothing word)
+   (shout word)
+   (question word)
    "Whatever."))
